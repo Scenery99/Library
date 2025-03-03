@@ -1,0 +1,86 @@
+:root {
+    --burgundy: #800020;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f7f0ee;
+    color: #40000d;
+}
+
+h1 {
+    color: var(--burgundy);
+}
+
+button {
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: var(--burgundy);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #b10130;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+
+.card {
+    background-color: #fff0f3;
+    border: 1px solid var(--burgundy);
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    width: 220px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-card {
+    width: 300px;
+    padding: 20px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.modal-card.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.modal-card h2 {
+    margin-top: 0;
+    color: var(--burgundy);
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+dialog {
+    border: none;
+    border-radius: 5px;
+    padding: 0;
+    background: transparent;
+}
