@@ -1,7 +1,7 @@
 // массив для хранения книг
 const myLibrary = []; 
 
-// конструктоп для книги
+// конструктор для книги
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -16,27 +16,47 @@ function addBookToLibrary(title, author, pages, read) {
   renderBooks();
 }
 
-// ф-я обновления карточек книг
+// ф-я для поиска карточки по идентификатору
+function updateCard(index) {
+  const card = document.querySelector(`#book-${index}`);
+  if (!card) return;
+
+  // изменение статуса - прочитано или нет
+  const book = myLibrary[index];
+  card.querySelector("p strong").textContent = book.read ? "Прочитано" : "Не прочитано";
+  card.querySelector("button:first-of-type").textContent = book.read
+    ? "Отметить как не прочитано"
+    : "Отметить как прочитано";
+}
+
+// ф-я для обновления карточек книг
 function renderBooks() {
   const cardsContainer = document.getElementById("bookCards");
   cardsContainer.innerHTML = "";
 
   myLibrary.forEach((book, index) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-
-    card.innerHTML = `
-      <h3>${book.title}</h3>
-      <p><strong>Автор:</strong> ${book.author}</p>
-      <p><strong>Страницы:</strong> ${book.pages}</p>
-      <p><strong>Статус:</strong> ${book.read ? "Прочитано" : "Не прочитано"}</p>
-      <button onclick="toggleReadStatus(${index})">
-        ${book.read ? "Отметить как не прочитано" : "Отметить как прочитано"}
-      </button>
-      <button onclick="removeBook(${index})">Удалить</button>
-    `;
+    const card = createCard(book, index);
     cardsContainer.appendChild(card);
   });
+}
+
+// создаем новую карточку и добавляем ей класс
+function createCard(book, index) {
+  const card = document.createElement("div");
+  card.id = `book-${index}`;
+  card.classList.add("card");
+
+  card.innerHTML = `
+    <h3>${book.title}</h3>
+    <p><strong>Автор:</strong> ${book.author}</p>
+    <p><strong>Страницы:</strong> ${book.pages}</p>
+    <p><strong>Статус:</strong> ${book.read ? "Прочитано" : "Не прочитано"}</p>
+    <button onclick="toggleReadStatus(${index})">
+      ${book.read ? "Отметить как не прочитано" : "Отметить как прочитано"}
+    </button>
+    <button onclick="removeBook(${index})">Удалить</button>
+  `;
+  return card;
 }
 
 // ф-я для удаления книги
